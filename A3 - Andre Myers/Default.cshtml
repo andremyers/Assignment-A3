@@ -1,0 +1,29 @@
+﻿@{
+    Layout = "~/_SiteLayout.cshtml";
+    Page.Title = "Home Page";
+
+    var db = Database.Open("MOVIE_DB");
+    var SQLREAD = "SELECT * FROM Movie";
+    var data = db.Query(SQLREAD);
+
+}
+
+<html>
+<body>
+    <div class="container">
+        <div class="row">
+
+            <h2>Movies in Database</h2>
+
+            <div>
+                <ul>
+                    @foreach (var movie in data)
+                    {
+                        <li class="h5 text-uppercase"><a href="/movie/@movie.MovieTitle">@movie.MovieTitle</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
